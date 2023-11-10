@@ -65,3 +65,13 @@ def add_nested_tab(tabs):
     print("\n")
     url = validateURL()
     tabs[index]['nested_tabs'].append({title:url})
+
+
+
+def remove_tab(tabs):
+    index = eval(input("enter index: "))
+    print("\n")
+    while (index >= len(tabs) or index < 0):
+        index = eval(input("enter index: "))
+        print("\n")
+    tabs.pop(index)
