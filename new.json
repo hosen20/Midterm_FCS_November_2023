@@ -1,6 +1,10 @@
 [
     {
         "google": "http://google.com",
-        "nested_tabs": []
+        "nested_tabs": [
+            {
+                "facebook": "http://facebook.com"
+            }
+        ]
     }
 ]

@@ -1,3 +1,11 @@
+import os
+import validators
+import requests
+from bs4 import BeautifulSoup
+import time
+import json
+
+
 def validateURL():
     user_url = input("please enter url: ")
     while (not validators.url(user_url)):
