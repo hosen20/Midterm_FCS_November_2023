@@ -15,7 +15,7 @@ def add_tab(tabs):
     user_url = validateURL()
     title = input("please input title: ")
     print("\n")
-    tabs.append({title:user_url})
+    tabs.append({title:user_url, 'nested_tabs':[]})
 
 
 
@@ -55,3 +55,13 @@ def printMenu():
     ''')
 
 
+def add_nested_tab(tabs):
+    index = eval(input("enter index: "))
+    print("\n")
+    while (index >= len(tabs) or index < 0):
+        index = eval(input("enter index: "))
+        print("\n")
+    title = input("enter title: ")
+    print("\n")
+    url = validateURL()
+    tabs[index]['nested_tabs'].append({title:url})
