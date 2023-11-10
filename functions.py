@@ -111,3 +111,12 @@ def loadTabs():
     return data
 
 
+def display_titles(tabs):
+    index = get_index(tabs)
+    dct = tabs[index]
+    print(first_key(dct))
+    if len(dct['nested_tabs']) > 0:
+        for n_dct in dct['nested_tabs']:
+            print(f'\t--{first_key(n_dct)}')
+
+
