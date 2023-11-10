@@ -1,4 +1,8 @@
 import validators
+import requests
+from bs4 import BeautifulSoup
+import time
+
 
 def validateURL():
     user_url = input("please enter url: ")
@@ -12,3 +16,25 @@ def add_tab(tabs):
     title = input("please input title: ")
     print("\n")
     tabs.append({title:user_url})
+
+
+
+def get_html(url):
+    headers = {
+"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+    }
+    error = True
+    ct = 0
+    while(error and ct < 3):
+        ct = ct + 1
+        time.sleep(3)
+        try:
+            response = requests.get(url, headers=headers)
+            if response.status_code == 200:
+                error = False
+                # Parse the HTML content of the page using BeautifulSoup
+                soup = BeautifulSoup(response.text, "html.parser")
+                return soup
+        except:
+            error = True
+    return "error"
