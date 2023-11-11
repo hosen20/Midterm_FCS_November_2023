@@ -34,6 +34,8 @@ def validateURL():
 def get_index(tabs):
     index = eval(input("enter index: "))
     print("\n")
+    if index == '':
+        return -1
     while (index >= len(tabs) or index < 0):
         index = eval(input("enter index: "))
         print("\n")
@@ -91,17 +93,23 @@ def add_nested_tab(tabs):
 
 
 def remove_tab(tabs):
-    index = get_index(tabs)
-    tabs.pop(index)
+    if len(tabs) > 0:
+        index = get_index(tabs)
+        tabs.pop(index)
+    else:
+        print("nothing to remove, no tabs opened\n")
 
 
 def display(tabs):
-    index = get_index(tabs)
-    dct = tabs[index]
-    print(get_html(dct[first_key(dct)]))
-    if len(dct['nested_tabs']) > 0:
-        for n_dct in dct['nested_tabs']:
-            print(get_html(n_dct[first_key(n_dct)]))
+    if len(tabs) == 0:
+        print("nothing to display\n")
+    else:
+        index = get_index(tabs)
+        dct = tabs[index]
+        print(get_html(dct[first_key(dct)]))
+        if len(dct['nested_tabs']) > 0:
+            for n_dct in dct['nested_tabs']:
+                print(get_html(n_dct[first_key(n_dct)]))
 
 
 def first_key(dct):
