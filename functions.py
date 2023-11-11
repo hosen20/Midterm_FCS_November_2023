@@ -142,7 +142,7 @@ def display_titles(tabs):
     if len(tabs) == 0:
         print("no opened tabs")
     else:
-        for i in range(len(tabs)):
+        for index in range(len(tabs)):
             dct = tabs[index]
             print(first_key(dct))
             if len(dct['nested_tabs']) > 0:
