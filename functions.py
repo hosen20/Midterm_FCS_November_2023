@@ -137,14 +137,19 @@ def clear(tabs):
 
 
 def save_tabs(tabs):
-    path = input("please enter file name")
+    path = ''
+    while ('json' not in path):
+        path = input("enter path: ")
+        print("\n")
     with open(path, "w", encoding="utf-8") as json_file:
         json.dump(tabs, json_file, ensure_ascii=False, indent=4)
 
 
 def load_tabs(tabs):
-    path = input("enter path: ")
-    print("\n")
+    path = ''
+    while ('.json' not in path):
+        path = input("enter path: ")
+        print("\n")
     try:
         with open(path) as f:
             data = json.load(f)
