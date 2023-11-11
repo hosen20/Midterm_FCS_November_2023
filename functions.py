@@ -85,7 +85,7 @@ def printMenu():
 
 def add_nested_tab(tabs):
     index = get_index(tabs)
-    title = add_title(tabs['nested_tabs'])
+    title = add_title(tabs[index]['nested_tabs'])
     print("\n")
     url = validateURL()
     tabs[index]['nested_tabs'].append({title:url})
