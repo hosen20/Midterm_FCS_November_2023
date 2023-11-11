@@ -32,14 +32,17 @@ def validateURL():
 
 
 def get_index(tabs):
-    index = eval(input("enter index: "))
-    print("\n")
-    if index == '':
-        return -1
-    while (index >= len(tabs) or index < 0):
-        index = eval(input("enter index: "))
-        print("\n")
-    return index
+    index = 'not numeric'
+    stop = False
+    while (not stop):
+        while ((not index.isnumeric()) and (index != '')):
+            index = input("enter index: ")
+            print("\n")
+        if index == '':
+            return -1
+        elif (int(index) < len(tabs) or int(index) > 0):
+            stop = True
+    return int(index)
 
 
 def add_tab(tabs):
