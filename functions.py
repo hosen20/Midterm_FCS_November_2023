@@ -45,7 +45,6 @@ def get_index(tabs):
 def add_tab(tabs):
     user_url = validateURL()
     title = add_title(tabs)
-    print("\n")
     tabs.append({title:user_url, 'nested_tabs':[]})
 
 
@@ -128,12 +127,15 @@ def saveTabs(tabs):
         json.dump(tabs, json_file, ensure_ascii=False, indent=4)
 
 
-def loadTabs():
+def loadTabs(tabs):
     path = input("enter path: ")
     print("\n")
-    with open(path) as f:
-        data = json.load(f)
-    return data
+    try:
+        with open(path) as f:
+            data = json.load(f)
+        tabs = tabs + list(data)
+    except:
+        print("no such path, choose choice another time")
 
 
 def display_titles(tabs):
