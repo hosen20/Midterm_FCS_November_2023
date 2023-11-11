@@ -6,6 +6,23 @@ import time
 import json
 
 
+
+def add_title(tabs):
+    if (len(tabs) > 0):
+        keys = []
+        for dct in tabs:
+            keys.append(first_key(dct))
+        title = input("enter title: ")
+        print('\n')
+        while (title in keys):
+            title = input("enter title: ")
+            print('\n')
+    else:
+        title = input("enter title: ")
+        print('\n')
+    return title
+
+
 def validateURL():
     user_url = input("please enter url: ")
     while (not validators.url(user_url)):
@@ -25,7 +42,7 @@ def get_index(tabs):
 
 def add_tab(tabs):
     user_url = validateURL()
-    title = input("please input title: ")
+    title = add_title(tabs)
     print("\n")
     tabs.append({title:user_url, 'nested_tabs':[]})
 
@@ -67,7 +84,7 @@ def printMenu():
 
 def add_nested_tab(tabs):
     index = get_index(tabs)
-    title = input("enter title: ")
+    title = add_title(tabs)
     print("\n")
     url = validateURL()
     tabs[index]['nested_tabs'].append({title:url})
