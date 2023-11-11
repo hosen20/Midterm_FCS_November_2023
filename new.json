@@ -1,9 +1,9 @@
 [
     {
-        "google": "http://google.com",
+        "sefactory": "http://sefactory.io",
         "nested_tabs": [
             {
-                "facebook": "http://facebook.com"
+                "facegoogle": "http://facebook.com"
             }
         ]
     }

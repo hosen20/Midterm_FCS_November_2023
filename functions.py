@@ -107,8 +107,8 @@ def add_nested_tab(tabs):
 
 
 # function used in choice 6
-def clear(tabs):
-    tabs = []
+#def clear(tabs):
+#    tabs = []
 
 
 # function used in choice 7
@@ -129,8 +129,9 @@ def save_tabs(tabs):
 
 
 # function used for choice 8
-def load_tabs(tabs):
+def load_tabs():
     
+    data = []
     # get the json file path
     path = ''
     while ('.json' not in path):
@@ -141,10 +142,9 @@ def load_tabs(tabs):
     try:
         with open(path) as f:
             data = json.load(f)
-        # append the new tabs to the list_of_tabs list
-        tabs = tabs + list(data)
     except:
         print("no such path, choose choice another time")
+    return data
 
 
 # the following functions are helper functions
