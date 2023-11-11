@@ -23,7 +23,7 @@ def add_title(tabs):
     return title
 
 
-def validateURL():
+def validate_url():
     user_url = input("please enter url: ")
     while (not validators.url(user_url)):
         print("\n")
@@ -35,18 +35,21 @@ def get_index(tabs):
     index = 'not numeric'
     stop = False
     while (not stop):
-        while ((not index.isnumeric()) and (index != '')):
+        while ((not str(index).isnumeric()) and (index != '')):
             index = input("enter index: ")
             print("\n")
+            try:
+                index = int(index)
+            except:
+                pass
         if index == '':
+            print("yes 1")
             return -1
-        elif (int(index) < len(tabs) or int(index) > 0):
-            stop = True
-    return int(index)
+        return index
 
 
 def add_tab(tabs):
-    user_url = validateURL()
+    user_url = validate_url()
     title = add_title(tabs)
     tabs.append({title:user_url, 'nested_tabs':[]})
 
@@ -72,7 +75,7 @@ def get_html(url):
     return "error"
 
 
-def printMenu():
+def print_menu():
     print('''
     1. Open Tab
     2. Close Tab
@@ -87,16 +90,23 @@ def printMenu():
 
 
 def add_nested_tab(tabs):
-    index = get_index(tabs)
-    title = add_title(tabs[index]['nested_tabs'])
-    print("\n")
-    url = validateURL()
-    tabs[index]['nested_tabs'].append({title:url})
+    if len(tabs) == 0:
+        print("no opened tabs")
+    else:
+        index = -2
+        while (index >= len(tabs) or index < -1):
+            index = get_index(tabs)
+        title = add_title(tabs[index]['nested_tabs'])
+        print("\n")
+        url = validate_url()
+        tabs[index]['nested_tabs'].append({title:url})
 
 
 def remove_tab(tabs):
     if len(tabs) > 0:
-        index = get_index(tabs)
+        index = -2
+        while (index >= len(tabs) or index < -1):
+            index = get_index(tabs)
         tabs.pop(index)
     else:
         print("nothing to remove, no tabs opened\n")
@@ -106,7 +116,9 @@ def display(tabs):
     if len(tabs) == 0:
         print("nothing to display\n")
     else:
-        index = get_index(tabs)
+        index = -2
+        while (index >= len(tabs) or index < -1):
+            index = get_index(tabs)
         dct = tabs[index]
         print(get_html(dct[first_key(dct)]))
         if len(dct['nested_tabs']) > 0:
@@ -124,13 +136,13 @@ def clear(tabs):
     tabs = []
 
 
-def saveTabs(tabs):
+def save_tabs(tabs):
     path = input("please enter file name")
     with open(path, "w", encoding="utf-8") as json_file:
         json.dump(tabs, json_file, ensure_ascii=False, indent=4)
 
 
-def loadTabs(tabs):
+def load_tabs(tabs):
     path = input("enter path: ")
     print("\n")
     try:
